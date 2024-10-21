@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+<body>
+    <h1>Carrito</h1>
+    
+    <!-- Botón para volver atrás -->
+    <a href="{{ url_for('productos') }}">Volver a productos</a>
+
+    {% if productos %}
+        {% for producto in productos %}
+            <div>
+                <h2>{{ producto.nombre }}</h2>
+                <p>Precio por unidad: €{{ producto.precio }}</p>
+                <p>Cantidad: {{ producto.cantidad }}</p>
+                <p>Subtotal: €{{ producto.subtotal }}</p>
+                <form action="{{ url_for('remove_from_cart', producto_id=producto.id) }}" method="post">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </div>
+        {% endfor %}
+        <hr>
+        <p>Total: €{{ total }}</p>
+    {% else %}
+        <p>El carrito está vacío.</p>
+    {% endif %}
+</body>
+</html>

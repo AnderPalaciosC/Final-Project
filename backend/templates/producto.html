@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <title>Producto</title>
+</head>
+<body>
+    <h1>{{ producto.nombre }}</h1>
+    <p>Descripción: {{ producto.descripcion }}</p>
+    <p>Precio: {{ producto.precio }}</p>
+    <form action="{{ url_for('add_to_cart', producto_id=producto.id) }}" method="post">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" name="cantidad" id="cantidad" value="1" min="1">
+        <button type="submit">Añadir al carrito</button>
+    </form>
+    <a href="{{ url_for('carrito') }}">Ver carrito</a>
+</body>
+</html>
